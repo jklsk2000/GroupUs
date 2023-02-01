@@ -1,0 +1,11 @@
+<h4 class="group_title">Event Name: $e.getName() (Host: $e.getOwner().getStoredInfo().getName())</h4>
+
+<p style="font-size: 16px;">Event Join ID: $e.getId()</p>
+<p style="font-size: 16px;"><details><summary>Event Description</summary>$e.getDescription()</details></p>
+
+<b>Students ($e.getNumberParticipants()):</b>
+<ul>
+    #foreach($stud in $e.getMembers())
+        <li>$stud.getStoredInfo().getName()#if($stud.getStoredInfo().getId()==$userinfo.getStoredInfo().getId())&nbsp;(You)#end</li>
+    #end
+</ul>

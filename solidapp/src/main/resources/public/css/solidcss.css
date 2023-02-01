@@ -1,0 +1,280 @@
+h1 {
+    font-family: 'Orienta', sans-serif;
+    color: #000000;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 40px;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+body {
+    height:100%;
+    background:black;
+    background:-webkit-linear-gradient(#FFFFFF,#DEDEDE);
+    font-size:14px;
+    color:#261802;
+    margin:8px;
+}
+a {
+    color:#0d1cbf;
+    text-decoration:none;
+}
+a.logo:link { color:black; text-decoration: none; }
+a.logo:visited { color:black; text-decoration: none; }
+a.logo:hover { color:black; text-decoration: none; }
+a.logo:active { color:black; text-decoration: none; }
+a.logo:hover { color:black; text-decoration: none;}
+
+button {
+    color:#0d1cbf;
+    background:#FFF;
+    border:1px solid #FFF;
+    border-radius:3px;
+    text-decoration:none;
+}
+button:hover {
+    color:#9213f2;
+    background:#FFF;
+    border:1px solid #FFF;
+    border-radius:3px;
+    text-decoration:underline;
+}
+.button-bad {
+    color:#777;
+    background:#FFF;
+    border:1px solid #FFF;
+    border-radius:3px;
+    text-decoration:none;
+}
+
+.login_frame {
+    border: 3px solid #f1f1f1;
+    margin: auto;
+    width: 85%;
+    padding: 10px;
+}
+
+.login_container {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login-button:hover {
+    opacity: 0.8;
+}
+
+.imgframe {
+    border:1px solid #022326;
+    border-radius:3px;
+    padding:5px;
+    margin:5px;
+}
+
+.group-green {
+    border:3px solid #7AC27E;
+    border-radius:3px;
+    background:#C1E0C3;
+    padding:7px;
+    margin:5px;
+}
+.group-red {
+    border:3px solid #DE7171;
+    border-radius:3px;
+    background:#ED9F9F;
+    padding:7px;
+    margin:5px;
+}
+/*.group-grey {
+    border:3px solid #777;
+    border-radius:3px;
+    background:#CCC;
+    padding:7px;
+    margin:5px;
+}*/
+
+.group-grey {
+    display: inline-block;
+    width: 100%;
+    border:3px solid #777;
+    border-radius:3px;
+    background:#CCC;
+    padding:7px;
+    margin:5px;
+}
+
+.group-white {
+    width:100%;
+    border:3px solid #777;
+    border-radius:5px;
+    background:#FFF;
+    padding: 7px;
+    margin: auto;
+}
+
+.count-green {
+    border:1px solid #FFFFFF;
+    border-radius:10px;
+    background:#FFFFFF;
+    padding:3px;
+    color:#7AC27E;
+}
+.count-red {
+    border:1px solid #FFFFFF;
+    border-radius:10px;
+    background:#FFFFFF;
+    padding:3px;
+    color:#DE7171;
+}
+.count-grey {
+    border:1px solid #FFFFFF;
+    border-radius:10px;
+    background:#FFFFFF;
+    padding:3px;
+    color:#777;
+}
+
+#banner {
+    height:100px;
+    line-height:50px;
+}
+
+#logo {
+    vertical-align:middle;
+}
+
+.navbar {
+    border-radius:5px;
+}
+
+.navbar-brand span {
+    color: #000000;
+    font-size:2rem;
+    line-height:1.2;
+    font-weight: 750;
+    display:inline-block;
+    vertical-align:middle;
+    padding:0 0 0 15px;
+}
+.navbar-brand b {
+    display:block;
+    font-size:50%;
+    line-height:1;
+}
+
+.navbar-nav {
+    margin-left:auto;
+}
+
+.navbar-text {
+    font-family: 'Orienta', sans-serif;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.nav-link {
+    color: #000000;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.nav-link:hover{
+    color: #71797e;
+}
+
+.error_frame {
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+}
+
+.error_container {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.name_frame {
+    margin: auto;
+    width: 97%;
+    padding: 10px;
+}
+
+.group_frame {
+    margin: auto;
+    width: 97%;
+    padding: 10px;
+    border-radius:20px;
+}
+
+.group_title {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.group-grey {
+    display: inline-block;
+    width: 100%;
+    border:3px solid #777;
+    border-radius:8px;
+    background:#CCC;
+    padding:10px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.create_frame {
+    margin: auto;
+    width: 85%;
+    padding: 10px;
+}
+
+.create_container {
+    width: 100%;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+footer {
+    position : absolute;
+    bottom : 0;
+    height : 40px;
+    margin-top : 40px;
+    text-align: center;
+    background-color: #000000;
+    color: white;
+}

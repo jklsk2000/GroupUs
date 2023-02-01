@@ -1,0 +1,9 @@
+#set( $title = "Survey" )
+#parse("public/top.vm")
+<h2>Here is your Survey</h2>
+#if($question1)
+<h2>Welcome <i>$question1</i></h2>
+#else
+
+#end
+#parse("public/bottom.vm")

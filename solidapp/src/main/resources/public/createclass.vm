@@ -1,0 +1,35 @@
+
+#set( $title = "Solid App - Make Classroom" )
+#parse("/public/top.vm")
+
+#set($classpath = "/createclass/")
+<div class="container">
+    <div class="jumbotron">
+        <h2>Create new classroom</h2>
+
+        <form action=$classpath$id method="post">
+            <fieldset>
+                <div>
+                    <label for="name">Name: </label>
+                    <input type="text" name="name" placeholder="name" id="name" required />
+                </div>
+                <div>
+                    <label for="description">Description: </label>
+                    <input type="text" name="description" placeholder="description" id="description" required />
+                </div>
+                <div>
+                    <label for="maxmem">Maximum members per group: </label>
+                    <input type="number" name="maxmem" placeholder="3" id="maxmem" required />
+                </div>
+
+                <input class="btn btn-lg btn-success" type="submit" value="Add" id="submitAccount" />
+            </fieldset>
+        </form>
+        <div>
+            <a href="/">
+                <button class="btn btn-lg btn-info"> Back to main </button>
+            </a>
+        </div>
+    </div>
+</div>
+#parse("public/bottom.vm")

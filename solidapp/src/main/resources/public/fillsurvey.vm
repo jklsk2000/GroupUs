@@ -1,0 +1,48 @@
+#set( $title = "Fill a Survey" )
+#set( $classpath = "/fillsurvey/" )
+#parse("public/top.vm")
+<script type = "text/javascript">
+    function addResponse(surveyId) {
+	document.cookie = "svId="+surveyId+"; path=/";
+        let checked = document.querySelectorAll('input[type="radio"]:checked');
+        let responseArr = [];
+        for (i = 0; i < checked.length; i++) {
+            responseArr.push(checked[i].value);
+        }
+        let encodedArr = JSON.stringify(responseArr);
+	document.cookie = "responseArr="+encodedArr+"; path=/"; //the code that was here before didnt work on my machine so horrible nightmare code it is
+	return true;
+    }
+</script>
+    #if ($survey)
+    <div class="group_frame">
+        <h2>Class ID: $survey.getId() 's Survey</h2>
+
+        <form action="$classpath$survey.getId()" method="post" onsubmit="addResponse('$survey.getId()')">
+            #foreach($q in $survey.getAllQuestions())
+                <div class="create_container">
+                    <h3> Question: $q.getQuestionText()</h3>
+                    <div class="create_container">
+                        <fieldset id=$q.getId()>
+                            <p>Strongly Disagree &nbsp; &nbsp;
+                                <input type="radio" value="1" name="$q.getId()">
+                                <input type="radio" value="2" name="$q.getId()">
+                                <input type="radio" value="3" name="$q.getId()">
+                                <input type="radio" value="4" name="$q.getId()">
+                                <input type="radio" value="5" name="$q.getId()">
+                                &nbsp; &nbsp; Strongly Agree
+                            </p>
+                        </fieldset>
+                    </div>
+                </div>
+            #end
+            <div>
+                <button type="submit" class="login-button">Submit</button>
+            </div>
+        </form>
+    </div>
+    #end
+</body>
+#parse("public/bottom.vm")
+
+

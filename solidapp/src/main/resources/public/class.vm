@@ -1,0 +1,61 @@
+#parse("public/top.vm")
+#set( $title = "Solid App - Make Classroom" )
+#set($classpath = "/class/")
+#set($responsepath = "/classresponse/")
+#set($recpath = "/rec_result/")
+
+#if ($event.getSurvey().getOpen() == "true")
+<div class="container">
+    <h1>Welcome to your $event.getName() class</h1>
+
+    <div class="jumbotron">
+        <p><a class="btn btn-lg btn-success" href=$responsepath$id role="button">View Survey Responses</a></p>
+        <form action=$classpath$id  method="post">
+            <input class="btn btn-lg btn-success" type = "submit" name = "close" value ="Close Survey" />
+        </form>
+    </div>
+</div>
+#else
+<div class="container">
+    <h1>Groups Generated Via Survey Results:</h1>
+##    <div class="jumbotron">
+##        <p><a class="btn btn-lg btn-success" href=$recpath$id role="button">View Recommendation</a></p>
+##    </div>
+    #foreach($g in $event.getGroups())
+        <div class=group-grey style="padding-left:20px;">
+            <br/><b>Group ID: $g.getId() </b>
+            <br/>
+
+            <details open><summary>Members</summary>
+            <ul>
+            #foreach($p in $g.getMembers())
+                #foreach ($s in $students)
+                    #if ($p == $s.getStoredInfo().getId())
+                        <li>Name: $s.getStoredInfo().getName()
+                        <br/> Email: $s.getStoredInfo().getEmail()
+                        <br/></li>
+                    #end
+                #end
+            #end
+            </ul>
+
+            </details>
+            $g.getMemberCount() students joined out of a max of $g.getMaxmem()
+
+        </div>
+    #end
+
+</div>
+#end
+<footer class="footer">
+    <p>&copy; 2021 SOLID.</p>
+</footer>
+
+
+
+
+
+
+
+#parse("public/bottom.vm")
+</html>

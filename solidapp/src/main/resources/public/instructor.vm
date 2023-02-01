@@ -1,0 +1,40 @@
+#set( $title = "Instructor Home" )
+#parse("public/top.vm")
+
+
+#if ($instructor)
+    <div class="name_frame">
+        <h2>Welcome, <b>$instructor.getStoredInfo().getName()</b></h2>
+        <h3>Role: Instructor</h3>
+    </div>
+
+    <div class="group_frame">
+    <div class=group-white style="padding-left:20px; color:#777">
+        #set($loc = "/createclass/")
+        <a href=$loc$instructor.getId()><b style="font-size: 16px; text-align: justify;">(+) Make a new event!</b></a>
+    </div>
+    </div>
+    #set($baseFill = "/class/")
+<div class="group_frame" style="background: rgba(255,255,255,0); padding-bottom: 0px;"><h3 >Your events:</h3></div>
+    <div class="group_frame">
+
+        #foreach($e in $instructor.getEvents())
+            #if($e.getSurvey())
+                <div class=group-grey style="padding-left:20px;">
+                    #parse("public/group_info.vm")
+                    <br/><a href=$baseFill$e.getId()>View event details...</a> <br>
+                </div>
+            #end
+        #end
+    </div>
+#else
+<script type="text/javascript">
+    window.location = "/";
+</script>
+#end
+
+
+
+
+
+#parse("public/bottom.vm")

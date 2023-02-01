@@ -1,0 +1,30 @@
+#set( $title = "Solid App - Make Subgroup" )
+#parse("public/top.vm")
+
+## currently unused
+
+<h2>Create new classroom</h2>
+<legend>...</legend>
+<form action="/creategroup" method="post" onsubmit="return validateNewClass">
+    <fieldset>
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" placeholder="name" id="name" required />
+        </div>
+        <div>
+            <label for="description">Write a description: </label>
+            <input type="text" name="description" placeholder="Lorem ipsum" id="description" required />
+        </div>
+        <div>
+            <label for="maxmem">Maximum members per group: </label>
+            <input type="number" name="maxmem" placeholder="3" id="maxmem" required />
+        </div>
+        <div>
+            <label for="autoclose">Automatically close filled groups: </label>
+            <input type="checkbox" name="autoclose" placeholder="3" id="autoclose" required />
+        </div>
+
+        <input type="submit" value="Add" id="submitAccount" />
+    </fieldset>
+</form>
+#parse("public/bottom.vm")

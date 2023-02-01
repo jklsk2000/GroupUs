@@ -1,0 +1,30 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand">
+        <img src="/img/groupus_smol.png" id="logo" alt="Logo" width="65" height="65">
+        <span>GroupUs</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText" style="align-content: end">
+        <ul class="navbar-nav mr-auto">
+            #if ($username)
+                <span class="navbar-text"><i>Welcome, $username </i></span>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signout">Sign Out</a>
+                </li>
+            #else
+                <span class="navbar-text"><i>To Get Started, Sign Up</i></span>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Welcome</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Sign Up</a>
+                </li>
+            #end
+        </ul>
+    </div>
+</nav>

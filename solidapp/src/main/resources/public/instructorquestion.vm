@@ -1,0 +1,94 @@
+#set( $title = "Number of Questions" )
+#parse("public/top.vm")
+<h2 >Create Survey</h2>
+<head><script type = "text/javascript">
+    function ask(){
+        let response;
+        let feedback;
+        while (true) {
+            response = window.prompt("How many questions do you want to add?");
+            if(response == null) {
+                window.location.href = "/";
+                break;
+            }else if(isNaN(response)){
+                feedback = "Please enter a number";
+            }else if(Number(response ) > 20){
+                feedback = "Your input exceeds the maximum number of allowed inputs";
+            }else if(Number(response) <= 0){
+                feedback = "You should enter more than 1";
+            }else{
+                feedback = "Nice! We'll prepare a survey for you";
+                alert(feedback);
+                break;
+            }
+            alert(feedback);
+        }
+        var num = document.getElementById("number");
+        number.value = response;
+
+        let n = Number(response);
+
+        for (let i = 1; i <= n; i++) {
+            var inputContainer = document.getElementById("inputContainer");
+            var newForm = document.createElement("input");
+            var select = document.createElement("select");
+            var label = document.createElement("h4");
+            var labelTextNode = document.createTextNode("Question " + i + " ");
+            label.appendChild(labelTextNode);
+            label.setAttribute("style", "color:dodgerblue")
+
+            select.id = "select" + String(i);
+            select.name = "select" + String(i);
+            for (var j = -10; j < 11; j=j+2) {
+                var option = document.createElement("option");
+                option.value = Number(j/10);
+                option.text = String(option.value);
+                select.appendChild(option);
+            }
+
+
+            newForm.setAttribute("type", "text");
+            newForm.setAttribute("id", "form" + i);
+            newForm.setAttribute("size", "80");
+            newForm.setAttribute("name", String(i));
+
+            label.setAttribute("for", "Question" + i);
+
+            inputContainer.appendChild(label);
+            inputContainer.appendChild(newForm);
+            inputContainer.appendChild(select);
+            inputContainer.appendChild(document.createElement("br"));
+            inputContainer.appendChild(document.createElement("br"));
+
+        }
+    }
+</script><head/>
+<body onload = "ask();">
+<div class="container">
+    <div class="jumbotron">
+
+<h3>1. Please type the question you would like to ask.</h3>
+<h3>2. Indicate the importance of question by selecting weight from the dropdown menu.</h3>
+<h3>** The magnitude of the number corresponds to the importance of the question. **</h3>
+<h3>** Positive sign indicates similar responses result in a better match. **</h3>
+<h3>** Negative sign indicates opposite responses result in a better match. **</h3>
+#set($basePath = "/instructorquestion/")
+#if ($eventId)
+<form  action = $basePath$eventId  method = "post" name = "form">
+    <div id="inputContainer">
+    </div>
+
+    <input type = "hidden" name = "number" id = "number" >
+    <input class="btn btn-lg btn-success" type="submit" value="Create Survey" id="createSurvey">
+</form>
+#end
+
+<div>
+    <a href="/">
+        <button class="btn btn-lg btn-info"> Back to main </button>
+    </a>
+</div>
+    </div>
+</div>
+</body>
+#parse("public/bottom.vm")

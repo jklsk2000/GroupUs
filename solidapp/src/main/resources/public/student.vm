@@ -1,0 +1,52 @@
+#set( $title = "Student Home" )
+#set( $classpath = "/fillsurvey/")
+#set( $recpath = "/studentclass/")
+#parse("public/top.vm")
+#if ($userinfo)
+<div class="name_frame">
+	<h2>Welcome, <b>$userinfo.getStoredInfo().getName()</b></h2>
+	<h3>Role: Student</h3>
+</div>
+
+<form action="/" method="post" onsubmit="return validateNewClass">
+	<div class=group-white style="padding-left:10px; color:#777">
+		<b style="font-size: 16px; text-align: justify; width:25%"> Join a classroom!&nbsp;</b>&nbsp;<input placeholder="Ex. 123456789" type="text" name="classnum" style="width:50%">&nbsp;<button><span style="text-align: justify; width:25%">(+) Add</span></button>
+	</div>
+</form>
+
+<div class="group_frame" style="background: rgba(255,255,255,0); padding-bottom: 0px;"><h3 style="text-align: left">Events You've Joined:</h3></div>
+<div class="group_frame">
+	#foreach($e in $events)
+			#if ($e.containsStudentId($userinfo.getStoredInfo().getId()))
+				<div class=group-grey style="padding-left:10px;">
+					#parse("public/group_info.vm")
+
+					#if ($e.takenSurvey($userinfo.getStoredInfo().getId()))
+						You've already taken your survey.
+						#if ($e.getSurvey().getOpen() == "false")
+							<a href="$recpath$e.getId()">Check out the recommended groups!</a>
+						#else
+							<a> The survey is not closed yet. Please check back later for the recommended groups!</a>
+						#end
+
+					#else
+						<!--need to check if the survey is closed or not-->
+						#if ($e.getSurvey().getOpen() == "true")
+							<a href="$classpath$e.getSurvey().getId()">Take survey for placement!</a>
+						#else
+							<a> Sorry, the survey is closed now. Please contact your instructor.</a>
+							#end
+					#end
+				</div>
+			#end
+		#end
+</div>
+#else
+<script type="text/javascript">
+	window.location = "/";
+</script>
+#end
+
+
+
+#parse("public/bottom.vm")

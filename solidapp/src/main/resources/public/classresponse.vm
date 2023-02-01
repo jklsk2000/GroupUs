@@ -1,0 +1,28 @@
+#set( $title = "Class Responses" )
+#parse("public/top.vm")
+
+<body>
+    #if ($responses)
+    <h1>List of all responses:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($r in $responses)
+                <li>
+                    $r.getUsername() completed survey id $r.getSurvey().getId()
+                    <br>
+                    #foreach($ans in $r.getAllAnswers())
+                        $r.getUsername() answered $ans.
+                        <br>
+                    #end
+                </li>
+                <br>
+                <br>
+            #end
+            </p>
+        </ol>
+    </div>
+    #end
+<div>
+
+#parse("public/bottom.vm")

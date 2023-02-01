@@ -1,0 +1,79 @@
+#set( $title = "SOLID App" )
+#parse("public/top.vm")
+
+#if($username)
+<h2>Welcome <i>$username</i></h2>
+<p><a href="/getsurvey">Open Surveys...</a></p>
+<p><a href="/responses">View Responses...</a></p>
+<div class=imgframe>
+    <div class=group-white style="padding-left:20px; color:#777">
+        <a href="/createclass">(+) Make a new classroom!</a>
+    </div>
+    <div class=group-white style="padding-left:20px; color:#777">
+        Join a classroom!&nbsp;<input placeholder="Ex. 123456789"><button>Add</button>
+    </div>
+    #foreach($gr in $groups)
+        #if ($gr.getSupergroupIds() == "-1" && $gr.containsUserWithUsername($username) == "true")
+            <div class=group-grey style="padding-left:20px;">
+                <b>$gr.getName()</b>&nbsp;<a>Change name</a>&nbsp;<a>Add subgroup</a>
+                <button>Join</button><button>Leave</button><button>Open joining</button><button>Close joining</button><button>Reset all groups</button><button>Delete</button>
+                <span class=count-grey style="float:right"><b>$gr.getMemberCount() unassigned students</b>&nbsp;#if($gr.getOpen()) Open#else Closed#end</span>
+                <br/>Room ID: $gr.getId() (Enter this number as a student to join the classroom)
+                #foreach($gsub in $groups)
+                    #if ($gsub != $gr && $gsub.getSupergroupIds() == $gr.getId())
+                        <div class=group#if($gr.getOpen())-green#else-red#end style="padding-left:20px;">
+                            <b>$gsub.getName()</b>&nbsp;<a>Change name</a>
+                            <button>Join</button><button>Leave</button><button>Open joining</button><button>Close joining</button><button>Kick all</button><button>Delete</button>
+                            <span class=count#if($gsub.getMemberCount() > $gsub.getMaxmem())-red#else-green#end style="float:right"><b>$gsub.getMemberCount() / $gsub.getMaxmem()</b>&nbsp;#if($gr.getOpen()) Open#else Closed#end</span>
+                            <details><summary>About this group</summary>$gsub.getDescription()</details>
+                            <br/><label for="newstud">Add to group:</label>
+                            <select name="newstud">
+                                #foreach($stud in $gsub.getMembersNotInSubgroup())
+                                    <option>$stud.getName()</option>
+                                #end
+                            </select><button>Add</button>
+                            <ul>
+                                #foreach($stud in $gsub.getMembers())
+                                    <li><a>$stud.getName()</a>&nbsp;<button>Kick</button></li>
+                                #end
+                            </ul>
+                        </div>
+                    #end
+                #end
+                <label for="newstud">Add to class:</label>
+                <input placeholder="Search for student"><button>Add</button>
+                <ul>
+                    #foreach($stud in $gr.getMembers())
+                        <li><a>$stud.getName()</a>&nbsp;<button>Kick out of class</button></li>
+                    #end
+                </ul>
+            </div>
+        #end
+    #end
+</div>
+<form action="/" method="post">
+    <fieldset>
+        <button>Sign out</button>
+    </fieldset>
+</form>
+#else
+<form action="/" method="post" onsubmit="return validateUsername" class="login_frame">
+    <fieldset>
+        <h1><b>Welcome to GroupUs!</b></h1>
+        <h2>To get started, sign in:</h2>
+        <div class="login_container">
+            <h3><label for="username" style="margin-bottom: 0px"><b>Username</b></label></h3>
+            <input type="text" placeholder="Your Name Here" name="username" required class="login_container" style="margin-bottom: 0px">
+            <button type="submit" class="login-button">Login</button>
+        </div>
+
+        <div class="login_container">
+            <h3>New to GroupUs?</h3>
+            <h4>Create a New Account:</h4>
+            <a href="/signup"><button type="button" class="login-button" style="background-color: #894900;">New User?</button></a>
+        </div>
+    </fieldset>
+</form>
+#end
+
+#parse("public/bottom.vm")

@@ -1,0 +1,12 @@
+#set( $title = "Something wrong..." )
+#parse("public/top.vm")
+<div class="error_frame">
+    <div class="error_container">
+        <p style="font-size:200px; text-align: center; padding:120px"><span>&#128563;</span></p>
+        <h1 style="font-family: 'Black Han Sans'; font-size: 50px;text-align: center;"><b>Oops!</b></h1>
+        <h3 style="text-align: center;">You took a wrong turn somewhere: </br> <span style="color:red">$error</span></h3>
+        <a href="/"><button class="login-button">Go Back to the Main Page</button></a>
+    </div>
+</div>
+
+#parse("public/bottom.vm")

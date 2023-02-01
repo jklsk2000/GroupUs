@@ -1,0 +1,51 @@
+#set( $title = "Solid App - Sign in" )
+#parse("public/top.vm")
+
+#if ($role && $uid && $username)
+    <script type="text/javascript">
+        window.location = "/";
+    </script>
+#else
+    <form action="/signup" method="post" class="login_frame">
+        <fieldset>
+            <h1 style="padding: 10px 10px;"><b>Create Account</b></h1>
+            <div class="login_container">
+                <h3><label for="name" style="margin-bottom: 0"><b>Name:</b></label></h3>
+                <input type="text" name="name" placeholder="Your Name" id="name" required class="login_container" style="margin-bottom: 0px"/>
+            </div>
+            <div class="login_container">
+                <h3><label for="name" style="margin-bottom: 0px">Email:</label></h3>
+                <input type="text" name="email" placeholder="Your Email" id="email" required class="login_container" style="margin-bottom: 0px"/>
+            </div>
+            <div class="login_container">
+                <h3><label for="whoami">I am a: </label></h3>
+                <select name = "whoami" class="login_container">
+                    <option value = "Student" selected>Student</option>
+                    <option value = "Instructor">Instructor</option>
+                </select>
+            </div>
+            <input type="submit" value="Add" id="submitAccount" class="login-button"/>
+
+            #*
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" name="name" placeholder="name" id="name" required />
+            </div>
+            <div>
+                <label for="name">Email: </label>
+                <input type="text" name="email" placeholder="email" id="email" required />
+            </div>
+            <br />
+            <div>
+                <label for="whoami">I am a: </label>
+                <select name = "whoami">
+                    <option value = "Student" selected>Student</option>
+                    <option value = "Instructor">Instructor</option>
+                </select>
+            </div>
+            <input type="submit" value="Add" id="submitAccount" />*#
+
+        </fieldset>
+    </form>
+#end
+#parse("public/bottom.vm")

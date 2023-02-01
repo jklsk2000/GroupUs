@@ -1,0 +1,60 @@
+#parse("public/top.vm")
+#set( $title = "Solid App - Make Classroom" )
+#set($classpath = "/class/")
+#set($responsepath = "/classresponse/")
+#set($recpath = "/rec_result/")
+#set($joinpath = "/joingroup/")
+#set($query = "?GroupId=")
+#set($leavepath = "/leavegroup/")
+
+
+
+<div class="container">
+    <div class="d-flex justify-content-between" style="padding: 20px;">
+        <h1>Recommended Groups:</h1>
+        #if ($inGroup)
+            <button type="button" class="btn btn-outline-primary">
+                <a href=$leavepath$event.getId()>Leave Current Group</a>
+            </button>
+        #end
+    </div>
+
+    #foreach($g in $event.getGroups())
+        <div class="group-grey d-flex justify-content-between" style="padding-left:20px;">
+            <div>
+                <br/><b>Group ID: $g.getId() </b>
+                <br/>
+
+                <details open><summary>Members</summary>
+                    <ul>
+                        #foreach($p in $g.getMembers())
+                            #foreach ($s in $students)
+                                #if ($p == $s.getStoredInfo().getId())
+                                    <li>Name: $s.getStoredInfo().getName()
+                                        <br/> Email: $s.getStoredInfo().getEmail()
+                                        <br/></li>
+                                #end
+                            #end
+                        #end
+                    </ul>
+
+                </details>
+                $g.getMemberCount() students joined out of a max of $g.getMaxmem() <br/>
+            </div>
+
+
+            <div class="align-self-end">
+                #if (($g.getMemberCount() < $g.getMaxmem()) && !$inGroup)
+                    <button type="button" class="btn btn-outline-primary">
+                        <a href=$joinpath$event.getId()$query$g.getId()> Join Group</a>
+                    </button>
+                #end
+            </div>
+
+        </div>
+    #end
+
+</div>
+
+#parse("public/bottom.vm")
+</html>
